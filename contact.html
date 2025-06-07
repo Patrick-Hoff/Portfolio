@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contato | Desenvolvedor Full Stack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    /* Mesmo estilo do index */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background-color: #0F172A;
+      color: #fff;
+      line-height: 1.6;
+      padding-top: 70px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #0F172A;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      border-bottom: 1px solid #1E293B;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #38BDF8;
+    }
+    .btn {
+      background-color: #38BDF8;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      color: #0F172A;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background-color: #0ea5e9;
+    }
+    main {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    label {
+      font-weight: 600;
+      color: #94a3b8;
+    }
+    input, textarea {
+      padding: 0.8rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+    }
+    input {
+      background-color: #1E293B;
+      color: #fff;
+    }
+    textarea {
+      background-color: #1E293B;
+      color: #fff;
+      resize: vertical;
+      min-height: 120px;
+    }
+    button[type="submit"] {
+      width: max-content;
+      background-color: #38BDF8;
+      border: none;
+      padding: 0.8rem 1.6rem;
+      border-radius: 6px;
+      color: #0F172A;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button[type="submit"]:hover {
+      background-color: #0ea5e9;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Nome</h2>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">Sobre</a>
+      <a href="projects.html">Projetos</a>
+      <a href="contact.html" style="color:#38BDF8;">Contato</a>
+    </nav>
+    <button class="btn">Download CV</button>
+  </header>
+
+  <main>
+    <h1>Contato</h1>
+    <form action="mailto:seuemail@exemplo.com" method="POST" enctype="text/plain">
+      <label for="name">Nome</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="message">Mensagem</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </main>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sobre | Desenvolvedor Full Stack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    /* Mesmo estilo do index */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background-color: #0F172A;
+      color: #fff;
+      line-height: 1.6;
+      padding-top: 70px; /* Espaço para header fixo */
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #0F172A;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      border-bottom: 1px solid #1E293B;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #38BDF8;
+    }
+    .btn {
+      background-color: #38BDF8;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      color: #0F172A;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background-color: #0ea5e9;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Nome</h2>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html" style="color:#38BDF8;">Sobre</a>
+      <a href="projects.html">Projetos</a>
+      <a href="contact.html">Contato</a>
+    </nav>
+    <button class="btn">Download CV</button>
+  </header>
+
+  <main>
+    <h1>Sobre Mim</h1>
+    <p>Olá! Eu sou um Desenvolvedor Full Stack com paixão por construir soluções web modernas, eficientes e acessíveis. Tenho experiência em diversas tecnologias e sempre busco aprender e me aperfeiçoar para entregar o melhor aos meus clientes e projetos pessoais.</p>
+    <p>Atualmente, trabalho com HTML, CSS, JavaScript, React, Node.js, e banco de dados como MySQL e Firebase. Também sou estudante de Análise e Desenvolvimento de Sistemas, sempre aberto a novos desafios e oportunidades na área de desenvolvimento.</p>
+    <p>Fora do mundo da programação, gosto de tecnologia, música e esportes, que me ajudam a manter o equilíbrio e a criatividade no meu trabalho.</p>
+  </main>
+</body>
+</html>
