@@ -20,12 +20,14 @@
       <a href="projects.html">Projetos</a>
       <a href="contact.html" style="color:#38BDF8;">Contato</a>
     </nav>
-    <button class="btn">Download CV</button>
+    <a href="./PDF/Curriculo Patrick Hoffmann Campos.pdf" target="_blank">
+      <button class="btn">Download CV</button>
+    </a>
   </header>
 
   <main>
     <h1>Contato</h1>
-    <form action="mailto:seuemail@exemplo.com" method="POST" enctype="text/plain">
+    <form action="https://formsubmit.co/email" method="POST">
       <label for="name">Nome</label>
       <input type="text" id="name" name="name" required />
 
@@ -34,6 +36,7 @@
 
       <label for="message">Mensagem</label>
       <textarea id="message" name="message" required></textarea>
+      <input type="hidden" name="_next" value="https://yourdomain.co/thanks.html">
 
       <button type="submit">Enviar</button>
     </form>

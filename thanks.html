@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Obrigado!</title>
+  <link rel="stylesheet" href="style/style.css" />
+</head>
+<body>
+  <main>
+    <div id="content" style="display: none;">
+      <h1>Obrigado pelo contato!</h1>
+      <p>Recebi sua mensagem e entrarei em contato em breve.</p>
+      <a href="index.html">Voltar para a Home</a>
+    </div>
+    <div id="unauthorized" style="display: none;">
+      <h1>Acesso inválido</h1>
+      <p>Você só pode acessar essa página após enviar o formulário de contato.</p>
+      <a href="contact.html">Voltar ao Contato</a>
+    </div>
+  </main>
+
+  <script>
+    // Simples verificação usando document.referrer
+    if (document.referrer.includes("formsubmit.co")) {
+      document.getElementById("content").style.display = "block";
+    } else {
+      document.getElementById("unauthorized").style.display = "block";
+    }
+  </script>
+</body>
+</html>
