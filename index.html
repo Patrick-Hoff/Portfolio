@@ -1,120 +1,728 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfólio | Desenvolvedor Full Stack</title>
-    <link rel="shortcut icon" href="./icon/favicon.png" type="image/x-icon">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-  <link rel="stylesheet" href="style/style.css">
-</head>
+  <meta name="description" content="Patrick Hoffmann Campos — Desenvolvedor Full Stack. Aplicações web modernas, interfaces performáticas e soluções escaláveis." />
+  <meta name="keywords" content="desenvolvedor full stack, react, node.js, javascript, typescript, portfólio, patrick hoffmann" />
+  <meta name="author" content="Patrick Hoffmann Campos" />
+  <meta property="og:title" content="Patrick Hoffmann Campos | Full Stack Developer" />
+  <meta property="og:description" content="Desenvolvedor Full Stack focado em aplicações web modernas, interfaces performáticas e soluções escaláveis." />
+  <meta property="og:type" content="website" />
+  <title>Patrick Hoffmann Campos | Full Stack Developer</title>
+  <link rel="icon" type="image/png" href="icon/favicon.png" />
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style/style.css" />
+</head>
 <body>
-  <header>
-    <h2>Patrick Hoffmann Campos</h2>
-    <nav class="nav-links">
-      <a href="index.html" style="color:#38BDF8;">Home</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="projects.html">Projetos</a>
-      <a href="contact.html">Contato</a>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>Patrick<span class="logo-bracket">/&gt;</span>
+      </a>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#home" class="nav-link active">Início</a></li>
+        <li><a href="#about" class="nav-link">Sobre</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projetos</a></li>
+        <li><a href="#experience" class="nav-link">Experiência</a></li>
+        <li><a href="#contact" class="nav-link">Contato</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="PDF/Curriculo Patrick Hoffmann Campos.pdf" download class="btn btn-outline btn-sm">
+          <i class="fas fa-download"></i>
+          Currículo
+        </a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
-    <a href="./PDF/Curriculo Patrick Hoffmann Campos.pdf" target="_blank">
-      <button class="btn">Download CV</button>
-    </a>
   </header>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Desenvolvedor Full Stack focado em criar soluções web modernas, performáticas e centradas na experiência do usuário.</h1>
-      <!-- <h1>Olá! Sou Desenvolvedor Web com foco em soluções modernas, responsivas e centradas no usuário.</h1> -->
-      <p>Construindo soluções web modernas com foco em performance e usabilidade.</p>
-      <div class="hero-buttons">
-        <a href="./PDF/Curriculo Patrick Hoffmann Campos.pdf" target="_blank" class="btn-center">
-          <button class="btn btn-pdf">Baixar CV</button>
-        </a>
-        <a href="projects.html" class="btn-center">
-          <button class="btn btn-project" style="background:#1E293B; color:#fff; border: 1px solid  #38BDF8;">Ver
-            Projetos</button>
-        </a>
-        <a href="https://www.linkedin.com/in/patrickhoffmanncampos" target="_blank" class="linkedin-link btn-center">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn"
-            class="linkedin-icon">
-          LinkedIn - Patrick Hoffmann Campos
-        </a>
-      </div>
-    </div>
-    <div class="hero-img">
-      <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Ilustração de Dev"
-        style="user-select: none;" />
-    </div>
+  <main>
 
-<div
-  class="slider"
-  style="--width: 200px; --height: 200px; --quantity: 8;"
->
-  <div class="list">
-    <div class="item" style="--position: 1">
-      <div class="card">
-        <p><i class="devicon-firebase-plain colored"></i></p>
-        <p>Firebase</p>
+    <!-- ===== HERO ===== -->
+    <section class="hero section" id="home">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-orb hero-orb--1"></div>
+        <div class="hero-orb hero-orb--2"></div>
+        <div class="hero-orb hero-orb--3"></div>
+        <div class="hero-grid"></div>
       </div>
-    </div>
-    <div class="item" style="--position: 2">
-      <div class="card">
-        <p><i class="devicon-git-plain colored"></i></p>
-        <p>Git</p>
-      </div>
-    </div>
-    <div class="item" style="--position: 3">
-      <div class="card">
-        <p><i class="devicon-html5-plain colored"></i></p>
-        <p>HTML5</p>
-      </div>
-    </div>
-    <div class="item" style="--position: 4">
-      <div class="card">
-        <p><i class="devicon-css3-plain colored"></i></p>
-        <p>CSS3</p>
-      </div>
-    </div>
-    <div class="item" style="--position: 5">
-      <div class="card">
-        <p><i class="devicon-javascript-plain colored"></i></p>
-        <p>JavaScript</p>
-      </div>
-    </div>
-    <div class="item" style="--position: 6">
-      <div class="card">
-        <p><i class="devicon-react-original colored"></i></p>
-        <p>React</p>
-      </div>
-    </div>
-    <div class="item" style="--position: 7">
-      <div class="card">
-        <p><i class="devicon-mysql-plain colored"></i></p>
-        <p>MySQL</p>
-      </div>
-    </div>
-    <div class="item" style="--position: 8">
-      <div class="card">
-        <p><i class="devicon-mongodb-plain colored"></i></p>
-        <p>MongoDB</p>
-      </div>
-    </div>
-  </div>
-</div>
 
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="hero-badge reveal">
+            <span class="badge-dot"></span>
+            Disponível para novas oportunidades
+          </div>
 
- 
+          <h1 class="hero-title reveal">
+            Olá, sou<br>
+            <span class="gradient-text">Patrick Hoffmann</span>
+          </h1>
 
+          <div class="hero-subtitle reveal">
+            <span class="subtitle-line"></span>
+            <p id="typewriter">Desenvolvedor Full Stack Jr</p>
+          </div>
 
+          <p class="hero-description reveal">
+            Estudante de ADS buscando meu primeiro emprego como Desenvolvedor Full Stack Jr.
+            Experiência com JavaScript, React, Node.js e MySQL, aplicados em projetos reais.
+          </p>
 
-  </section>
+          <div class="hero-actions reveal">
+            <a href="#projects" class="btn btn-primary">
+              <span>Ver Projetos</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="#contact" class="btn btn-ghost">
+              <span>Fale Comigo</span>
+            </a>
+          </div>
+
+          <div class="hero-social reveal">
+            <a href="https://github.com/Patrick-Hoff" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/PatrickHoffmannCampos" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=patrickhoffmanncampos@gmail.com&su=Contato+pelo+Portf%C3%B3lio" target="_blank" rel="noopener" class="social-link" aria-label="E-mail">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <span class="card-dot card-dot--red"></span>
+              <span class="card-dot card-dot--yellow"></span>
+              <span class="card-dot card-dot--green"></span>
+              <span class="card-filename">developer.js</span>
+            </div>
+            <div class="hero-card-body">
+              <pre class="code-preview"><code><span class="ck">const</span> <span class="cv">developer</span> = {
+  <span class="cp">name</span>: <span class="cs">'Patrick Hoffmann'</span>,
+  <span class="cp">role</span>: <span class="cs">'Full Stack Dev Jr'</span>,
+  <span class="cp">stack</span>: [
+    <span class="cs">'React'</span>, <span class="cs">'Node.js'</span>,
+    <span class="cs">'JavaScript'</span>, <span class="cs">'MySQL'</span>
+  ],
+  <span class="cp">available</span>: <span class="cb">true</span>,
+  <span class="cp">passion</span>: <span class="cs">'clean code'</span>
+};</code></pre>
+            </div>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span class="stat-number" data-target="7">0</span>
+              <span class="stat-suffix">+</span>
+              <span class="stat-label">Projetos</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" data-target="12">0</span>
+              <span class="stat-suffix">+</span>
+              <span class="stat-label">Tecnologias</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" data-target="2">0</span>
+              <span class="stat-suffix">+</span>
+              <span class="stat-label">Anos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#about" class="scroll-indicator" aria-label="Rolar para baixo">
+        <div class="scroll-indicator-inner"></div>
+      </a>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="about section" id="about">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Quem sou eu</span>
+          <h2 class="section-title">Sobre <span class="gradient-text">Mim</span></h2>
+          <p class="section-subtitle">Desenvolvedor apaixonado por criar soluções web impactantes</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-content reveal">
+            <p class="about-text">
+              Desenvolvedor <strong>Full Stack Jr</strong> e estudante de <strong>Análise e Desenvolvimento
+              de Sistemas</strong>, buscando minha primeira oportunidade na área de desenvolvimento de software.
+            </p>
+            <p class="about-text">
+              Tenho experiência com criação de <strong>interfaces web interativas</strong>, desenvolvimento de
+              <strong>APIs REST</strong> com Node.js, integração com bancos de dados MySQL e MongoDB,
+              e autenticação de usuários — aplicados em projetos reais do meu portfólio.
+            </p>
+            <p class="about-text">
+              Atuo como suporte técnico N1 na <strong>WorkLab Sistemas e Tecnologias</strong>,
+              o que me proporcionou habilidades em resolução de problemas e integração de sistemas WebService
+              em ambiente clínico e laboratorial.
+            </p>
+
+            <div class="about-actions">
+              <a href="PDF/Curriculo Patrick Hoffmann Campos.pdf" download class="btn btn-primary">
+                <i class="fas fa-download"></i>
+                Download CV
+              </a>
+              <a href="#contact" class="btn btn-outline">
+                <i class="fas fa-paper-plane"></i>
+                Contato
+              </a>
+            </div>
+          </div>
+
+          <div class="about-cards">
+            <div class="info-card reveal" data-delay="100">
+              <div class="info-card-icon"><i class="fas fa-code"></i></div>
+              <div class="info-card-content">
+                <h3>Full Stack Dev Jr</h3>
+                <p>Front-end e back-end com foco em performance</p>
+              </div>
+            </div>
+            <div class="info-card reveal" data-delay="200">
+              <div class="info-card-icon"><i class="fas fa-graduation-cap"></i></div>
+              <div class="info-card-content">
+                <h3>ADS</h3>
+                <p>Análise e Desenvolvimento de Sistemas — Faculdade Impacta</p>
+              </div>
+            </div>
+            <div class="info-card reveal" data-delay="300">
+              <div class="info-card-icon"><i class="fas fa-headset"></i></div>
+              <div class="info-card-content">
+                <h3>Suporte N1</h3>
+                <p>Integração de sistemas WebService em clínicas e laboratórios</p>
+              </div>
+            </div>
+            <div class="info-card reveal" data-delay="400">
+              <div class="info-card-icon"><i class="fas fa-rocket"></i></div>
+              <div class="info-card-content">
+                <h3>Em Evolução</h3>
+                <p>Aprendizado contínuo com projetos reais</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="skills section" id="skills">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Tecnologias</span>
+          <h2 class="section-title">Minhas <span class="gradient-text">Skills</span></h2>
+          <p class="section-subtitle">Ferramentas e tecnologias que utilizo no dia a dia</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-category reveal" data-delay="0">
+            <div class="skill-category-header">
+              <div class="skill-category-icon"><i class="fas fa-palette"></i></div>
+              <h3 class="skill-category-title">Front-end</h3>
+            </div>
+            <div class="skill-items">
+              <div class="skill-item"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div>
+              <div class="skill-item"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div>
+              <div class="skill-item"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
+              <div class="skill-item"><i class="devicon-react-original colored"></i><span>React.js</span></div>
+            </div>
+          </div>
+
+          <div class="skill-category reveal" data-delay="100">
+            <div class="skill-category-header">
+              <div class="skill-category-icon"><i class="fas fa-server"></i></div>
+              <h3 class="skill-category-title">Back-end</h3>
+            </div>
+            <div class="skill-items">
+              <div class="skill-item"><i class="devicon-nodejs-plain colored"></i><span>Node.js</span></div>
+              <div class="skill-item"><i class="devicon-express-original"></i><span>Express</span></div>
+            </div>
+          </div>
+
+          <div class="skill-category reveal" data-delay="200">
+            <div class="skill-category-header">
+              <div class="skill-category-icon"><i class="fas fa-database"></i></div>
+              <h3 class="skill-category-title">Banco de Dados</h3>
+            </div>
+            <div class="skill-items">
+              <div class="skill-item"><i class="devicon-mysql-plain colored"></i><span>MySQL</span></div>
+              <div class="skill-item"><i class="devicon-mongodb-plain colored"></i><span>MongoDB</span></div>
+              <div class="skill-item"><i class="devicon-firebase-plain colored"></i><span>Firebase</span></div>
+            </div>
+          </div>
+
+          <div class="skill-category reveal" data-delay="300">
+            <div class="skill-category-header">
+              <div class="skill-category-icon"><i class="fas fa-tools"></i></div>
+              <h3 class="skill-category-title">Ferramentas</h3>
+            </div>
+            <div class="skill-items">
+              <div class="skill-item"><i class="devicon-git-plain colored"></i><span>Git</span></div>
+              <div class="skill-item"><i class="devicon-github-original"></i><span>GitHub</span></div>
+              <div class="skill-item"><i class="devicon-linux-plain"></i><span>Linux</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section class="projects section" id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Portfólio</span>
+          <h2 class="section-title">Meus <span class="gradient-text">Projetos</span></h2>
+          <p class="section-subtitle">Aplicações desenvolvidas com tecnologias modernas</p>
+        </div>
+
+        <div class="projects-grid">
+
+          <article class="project-card reveal" data-delay="0">
+            <div class="project-card-header">
+              <div class="project-card-icon"><i class="fas fa-tasks"></i></div>
+              <div class="project-card-links">
+                <a href="https://github.com/Patrick-Hoff/Taskify" target="_blank" rel="noopener" class="project-icon-link" aria-label="Ver no GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://project-tiskify.netlify.app/" target="_blank" rel="noopener" class="project-icon-link" aria-label="Ver demo"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">Gerenciador de Tarefas</h3>
+              <p class="project-description">
+                Aplicação web completa para criar, editar e organizar tarefas com autenticação de usuários
+                e sincronização em tempo real.
+              </p>
+            </div>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Firebase</span>
+                <span class="project-tag">JavaScript</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-delay="100">
+            <div class="project-card-header">
+              <div class="project-card-icon"><i class="fas fa-ticket-alt"></i></div>
+              <div class="project-card-links">
+                <a href="https://github.com/Patrick-Hoff/Project-Called" target="_blank" rel="noopener" class="project-icon-link" aria-label="Ver no GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://sistema-de-suporte.netlify.app/" target="_blank" rel="noopener" class="project-icon-link" aria-label="Ver demo"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">Gerenciador de Chamados</h3>
+              <p class="project-description">
+                Sistema de gerenciamento de chamados de suporte técnico com painel administrativo e
+                acompanhamento em tempo real.
+              </p>
+            </div>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Firebase</span>
+                <span class="project-tag">JavaScript</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-delay="200">
+            <div class="project-card-header">
+              <div class="project-card-icon"><i class="fas fa-film"></i></div>
+              <div class="project-card-links">
+                <a href="https://github.com/Patrick-Hoff/react-udemy" target="_blank" rel="noopener" class="project-icon-link" aria-label="Ver no GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://curso-udemy-filmes-patrick.netlify.app/" target="_blank" rel="noopener" class="project-icon-link" aria-label="Ver demo"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">Catálogo de Filmes</h3>
+              <p class="project-description">
+                Catálogo interativo de filmes com listagem, favoritos, trailers e gerenciamento de lista
+                salva pelo usuário.
+              </p>
+            </div>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">API REST</span>
+                <span class="project-tag">CSS3</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-delay="0">
+            <div class="project-card-header">
+              <div class="project-card-icon"><i class="fas fa-search"></i></div>
+              <div class="project-card-links">
+                <a href="https://github.com/Patrick-Hoff/FilmeFlix" target="_blank" rel="noopener" class="project-icon-link" aria-label="Ver no GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://patrick-hoff.github.io/FilmeFlix/" target="_blank" rel="noopener" class="project-icon-link" aria-label="Ver demo"><i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">Busca de Filmes</h3>
+              <p class="project-description">
+                Buscador de filmes em tempo real consumindo a API do TMDB, com interface responsiva e
+                exibição de detalhes completos.
+              </p>
+            </div>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">TMDB API</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-delay="100">
+            <div class="project-card-header">
+              <div class="project-card-icon"><i class="fas fa-blog"></i></div>
+              <div class="project-card-links">
+                <a href="https://github.com/Patrick-Hoff/blog-project" target="_blank" rel="noopener" class="project-icon-link" aria-label="Ver no GitHub"><i class="fab fa-github"></i></a>
+                <span class="project-icon-link project-icon-link--disabled" aria-label="Demo indisponível"><i class="fas fa-external-link-alt"></i></span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">Blog com Node.js</h3>
+              <p class="project-description">
+                Blog dinâmico com sistema de cadastro de postagens, autenticação e painel administrativo
+                completo.
+              </p>
+            </div>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">Express</span>
+                <span class="project-tag">MongoDB</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-delay="200">
+            <div class="project-card-header">
+              <div class="project-card-icon"><i class="fas fa-users-cog"></i></div>
+              <div class="project-card-links">
+                <a href="https://github.com/Patrick-Hoff/CRUD" target="_blank" rel="noopener" class="project-icon-link" aria-label="Ver no GitHub"><i class="fab fa-github"></i></a>
+                <span class="project-icon-link project-icon-link--disabled" aria-label="Demo indisponível"><i class="fas fa-external-link-alt"></i></span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-title">CRUD de Usuários</h3>
+              <p class="project-description">
+                Sistema fullstack completo com operações CRUD, interface React, API Node.js e persistência
+                em MySQL.
+              </p>
+            </div>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">MySQL</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card project-card--featured reveal" data-delay="0">
+            <div class="project-card-header">
+              <div class="project-card-icon"><i class="fas fa-hospital"></i></div>
+              <div class="project-card-links">
+                <a href="https://github.com/Patrick-Hoff/Project-laboratorio" target="_blank" rel="noopener" class="project-icon-link" aria-label="Ver no GitHub"><i class="fab fa-github"></i></a>
+                <span class="project-icon-link project-icon-link--disabled" aria-label="Demo indisponível"><i class="fas fa-external-link-alt"></i></span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <span class="project-featured-badge">Destaque</span>
+              <h3 class="project-title">Sistema de Atendimento Clínico</h3>
+              <p class="project-description">
+                Plataforma web para gerenciamento de atendimentos clínicos. Permite cadastrar pacientes,
+                registrar atendimentos e associar exames a cada atendimento. Aplicação fullstack com
+                autenticação e controle de permissões.
+              </p>
+            </div>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">MySQL</span>
+                <span class="project-tag">Express</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="projects-cta reveal">
+          <a href="https://github.com/Patrick-Hoff" target="_blank" rel="noopener" class="btn btn-outline">
+            <i class="fab fa-github"></i>
+            Ver todos no GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="experience section" id="experience">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Trajetória</span>
+          <h2 class="section-title">Minha <span class="gradient-text">Jornada</span></h2>
+          <p class="section-subtitle">Evolução profissional e acadêmica</p>
+        </div>
+
+        <div class="timeline">
+
+          <div class="timeline-item reveal" data-delay="0">
+            <div class="timeline-marker">
+              <div class="timeline-dot"><i class="fas fa-headset"></i></div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <div>
+                    <h3 class="timeline-title">Suporte N1 — Integração de Sistemas</h3>
+                    <p class="timeline-company">WorkLab Sistemas e Tecnologias</p>
+                  </div>
+                  <span class="timeline-period">Atual</span>
+                </div>
+                <p class="timeline-description">
+                  Atendo clínicas e laboratórios no suporte a sistemas de gestão, resolvendo problemas
+                  de integração WebService no dia a dia. Comecei como estagiário e hoje atuo como Suporte N1
+                  no setor de integração de sistemas — o que me deu uma visão prática de como software
+                  funciona em produção.
+                </p>
+                <div class="timeline-tags">
+                  <span class="timeline-tag">Suporte N1</span>
+                  <span class="timeline-tag">Integração WebService</span>
+                  <span class="timeline-tag">Sistemas Clínicos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal" data-delay="100">
+            <div class="timeline-marker">
+              <div class="timeline-dot"><i class="fas fa-graduation-cap"></i></div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <div>
+                    <h3 class="timeline-title">Análise e Desenvolvimento de Sistemas</h3>
+                    <p class="timeline-company">Faculdade Impacta</p>
+                  </div>
+                  <span class="timeline-period">Em andamento</span>
+                </div>
+                <p class="timeline-description">
+                  Cursando ADS com foco em desenvolvimento de software, algoritmos, banco de dados,
+                  engenharia de software e arquitetura de sistemas.
+                </p>
+                <div class="timeline-tags">
+                  <span class="timeline-tag">ADS</span>
+                  <span class="timeline-tag">Faculdade Impacta</span>
+                  <span class="timeline-tag">Ensino Superior</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal" data-delay="200">
+            <div class="timeline-marker">
+              <div class="timeline-dot"><i class="fas fa-code"></i></div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <div>
+                    <h3 class="timeline-title">Desenvolvimento Full Stack</h3>
+                    <p class="timeline-company">Projetos Pessoais & Aprendizado Contínuo</p>
+                  </div>
+                  <span class="timeline-period">2023 — Presente</span>
+                </div>
+                <p class="timeline-description">
+                  Desenvolvimento de 7+ projetos com React, Node.js, JavaScript, MySQL e Firebase.
+                  Construção de portfólio com aplicações completas e funcionais, do front-end ao back-end.
+                </p>
+                <div class="timeline-tags">
+                  <span class="timeline-tag">React</span>
+                  <span class="timeline-tag">Node.js</span>
+                  <span class="timeline-tag">JavaScript</span>
+                  <span class="timeline-tag">MySQL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal" data-delay="300">
+            <div class="timeline-marker">
+              <div class="timeline-dot"><i class="fas fa-certificate"></i></div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <div>
+                    <h3 class="timeline-title">Front-end Development</h3>
+                    <p class="timeline-company">SENAI</p>
+                  </div>
+                  <span class="timeline-period">180h</span>
+                </div>
+                <p class="timeline-description">
+                  Curso técnico de desenvolvimento front-end cobrindo HTML5, CSS3, JavaScript,
+                  responsividade e boas práticas de desenvolvimento web.
+                </p>
+                <div class="timeline-tags">
+                  <span class="timeline-tag">HTML5</span>
+                  <span class="timeline-tag">CSS3</span>
+                  <span class="timeline-tag">JavaScript</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="contact section" id="contact">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Vamos Conversar</span>
+          <h2 class="section-title">Entre em <span class="gradient-text">Contato</span></h2>
+          <p class="section-subtitle">Aberto a oportunidades e novas conexões profissionais</p>
+        </div>
+
+        <div class="contact-grid">
+
+          <div class="contact-info reveal">
+            <p class="contact-intro">
+              Se você tem uma oportunidade, projeto ou simplesmente quer trocar uma ideia sobre
+              tecnologia, estou disponível. Vamos construir algo incrível juntos.
+            </p>
+
+            <div class="contact-links">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=patrickhoffmanncampos@gmail.com&su=Contato+pelo+Portf%C3%B3lio" target="_blank" rel="noopener" class="contact-link">
+                <div class="contact-link-icon"><i class="fas fa-envelope"></i></div>
+                <div class="contact-link-content">
+                  <span class="contact-link-label">E-mail</span>
+                  <span class="contact-link-value">patrickhoffmanncampos@gmail.com</span>
+                </div>
+                <i class="fas fa-arrow-right contact-link-arrow"></i>
+              </a>
+
+              <a href="https://www.linkedin.com/in/PatrickHoffmannCampos" target="_blank" rel="noopener" class="contact-link">
+                <div class="contact-link-icon"><i class="fab fa-linkedin-in"></i></div>
+                <div class="contact-link-content">
+                  <span class="contact-link-label">LinkedIn</span>
+                  <span class="contact-link-value">Patrick Hoffmann Campos</span>
+                </div>
+                <i class="fas fa-arrow-right contact-link-arrow"></i>
+              </a>
+
+              <a href="https://github.com/Patrick-Hoff" target="_blank" rel="noopener" class="contact-link">
+                <div class="contact-link-icon"><i class="fab fa-github"></i></div>
+                <div class="contact-link-content">
+                  <span class="contact-link-label">GitHub</span>
+                  <span class="contact-link-value">Patrick-Hoff</span>
+                </div>
+                <i class="fas fa-arrow-right contact-link-arrow"></i>
+              </a>
+            </div>
+          </div>
+
+          <form class="contact-form reveal" action="https://formsubmit.co/patrickhoffmanncampos@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Novo contato do portfólio — Patrick Hoffmann" />
+            <input type="hidden" name="_next" value="https://patrickhoffmanncampos.netlify.app/thanks.html" />
+            <input type="hidden" name="_captcha" value="false" />
+
+            <div class="form-group">
+              <label for="name" class="form-label">Nome</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="Seu nome completo" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">E-mail</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="seu@email.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Mensagem</label>
+              <textarea id="message" name="message" class="form-input form-textarea" placeholder="Como posso ajudar?" rows="5" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">
+              <span>Enviar Mensagem</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="#home" class="nav-logo">
+            <span class="logo-bracket">&lt;</span>Patrick<span class="logo-bracket">/&gt;</span>
+          </a>
+          <p class="footer-tagline">Desenvolvedor Full Stack</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#home">Início</a>
+          <a href="#about">Sobre</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projetos</a>
+          <a href="#contact">Contato</a>
+        </nav>
+
+        <div class="footer-social">
+          <a href="https://github.com/Patrick-Hoff" target="_blank" rel="noopener" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/PatrickHoffmannCampos" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=patrickhoffmanncampos@gmail.com&su=Contato+pelo+Portf%C3%B3lio" target="_blank" rel="noopener" aria-label="E-mail">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Patrick Hoffmann Campos. Todos os direitos reservados.</p>
+        <p>Desenvolvido com muito café &#9749;</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
-
 </html>
