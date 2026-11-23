@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ERP Corporativo — Demo | Patrick Hoffmann Campos</title>
+  <meta name="description" content="Demonstração do ERP para indústria de embalagens desenvolvido por Patrick Hoffmann Campos: orçamentos, vendas, produção, compras e estoque." />
+  <link rel="icon" type="image/png" href="icon/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style/style.css" />
+  <style>
+    .erp-topbar {
+      position: sticky;
+      top: 0;
+      z-index: var(--z-header);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .erp-topbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 1rem;
+    }
+    .erp-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color var(--t-fast);
+    }
+    .erp-back:hover { color: var(--text-primary); }
+    .erp-topbar-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .erp-hero {
+      position: relative;
+      padding: 5rem 0 3rem;
+      overflow: hidden;
+    }
+    .erp-hero::before {
+      content: "";
+      position: absolute;
+      width: 560px;
+      height: 560px;
+      top: -220px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(59,130,246,0.16), transparent 68%);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .erp-hero-inner {
+      position: relative;
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .erp-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 1rem 0 1.1rem;
+    }
+    .erp-hero p.lead {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+    .erp-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+    .erp-stack {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.45rem;
+      margin-top: 1.75rem;
+    }
+
+    .erp-notice {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      max-width: 820px;
+      margin: 0 auto 3.5rem;
+      padding: 1rem 1.25rem;
+      background: rgba(234, 179, 8, 0.06);
+      border: 1px solid rgba(234, 179, 8, 0.22);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+      line-height: 1.65;
+    }
+    .erp-notice i { color: #EAB308; margin-top: 0.2rem; }
+    .erp-notice strong { color: var(--text-primary); }
+
+    /* ===== Tour ===== */
+    .erp-section { padding: 3.5rem 0; }
+    .erp-tour {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .erp-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      position: sticky;
+      top: 88px;
+    }
+    .erp-tab {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: all var(--t-base);
+    }
+    .erp-tab i { width: 18px; text-align: center; color: var(--text-muted); transition: color var(--t-base); }
+    .erp-tab:hover { background: rgba(255,255,255,0.035); color: var(--text-primary); }
+    .erp-tab[aria-selected="true"] {
+      background: rgba(59,130,246,0.1);
+      border-color: rgba(59,130,246,0.3);
+      color: var(--text-primary);
+    }
+    .erp-tab[aria-selected="true"] i { color: var(--blue); }
+    .erp-tab:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+    .erp-browser {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg), 0 0 40px rgba(59,130,246,0.08);
+    }
+    .erp-browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+    .erp-url {
+      flex: 1;
+      margin-left: 0.75rem;
+      padding: 0.3rem 0.8rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .erp-shot {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: #0d0d10;
+      cursor: zoom-in;
+    }
+    .erp-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      transition: opacity 0.25s ease;
+    }
+    .erp-shot img.is-loading { opacity: 0; }
+    .erp-shot-switch {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      display: flex;
+      gap: 0.35rem;
+      padding: 0.3rem;
+      background: rgba(9,9,11,0.82);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(8px);
+    }
+    .erp-shot-switch button {
+      padding: 0.3rem 0.75rem;
+      border: none;
+      border-radius: var(--radius-full);
+      background: transparent;
+      color: var(--text-secondary);
+      font: inherit;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .erp-shot-switch button[aria-pressed="true"] { background: var(--blue); color: #fff; }
+    .erp-shot-switch:empty { display: none; }
+    .erp-zoom-hint {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(9,9,11,0.82);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      pointer-events: none;
+    }
+    .erp-caption { padding: 1.25rem 1.4rem 1.4rem; }
+    .erp-caption h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+    }
+    .erp-caption p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; }
+    .erp-caption ul {
+      margin-top: 0.8rem;
+      display: grid;
+      gap: 0.4rem;
+      list-style: none;
+    }
+    .erp-caption li {
+      display: flex;
+      gap: 0.55rem;
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+    .erp-caption li i { color: var(--green); font-size: 0.75rem; margin-top: 0.35rem; }
+
+    /* ===== Fluxo ===== */
+    .erp-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+    .erp-flow-step {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.75rem 1.1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .erp-flow-step i { color: var(--blue); }
+    .erp-flow-arrow { color: var(--text-muted); font-size: 0.8rem; }
+
+    /* ===== Cards ===== */
+    .erp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .erp-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      transition: border-color var(--t-base), transform var(--t-base);
+    }
+    .erp-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
+    .erp-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+    }
+    .erp-card h3 i { color: var(--blue); }
+    .erp-card p, .erp-card li { color: var(--text-secondary); font-size: 0.86rem; line-height: 1.7; }
+    .erp-card ul { list-style: none; display: grid; gap: 0.3rem; }
+    .erp-card li::before { content: "›"; color: var(--blue); margin-right: 0.45rem; font-weight: 700; }
+    .erp-card .label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin: 0.9rem 0 0.25rem;
+    }
+
+    /* ===== Run ===== */
+    .erp-run {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .erp-run ol {
+      list-style: none;
+      counter-reset: step;
+      display: grid;
+      gap: 0.9rem;
+      margin-top: 1.25rem;
+    }
+    .erp-run li {
+      counter-increment: step;
+      display: flex;
+      gap: 0.8rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+    .erp-run li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.3);
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .erp-terminal {
+      background: #0d0d10;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .erp-terminal pre {
+      margin: 0;
+      padding: 1.25rem 1.4rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 1.9;
+      color: var(--text-secondary);
+      overflow-x: auto;
+    }
+    .erp-terminal .p { color: var(--green); user-select: none; }
+    .erp-terminal .c { color: var(--text-muted); }
+    .erp-copy {
+      margin-left: auto;
+      padding: 0.25rem 0.65rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      font: inherit;
+      font-size: 0.72rem;
+      cursor: pointer;
+    }
+    .erp-copy:hover { color: var(--text-primary); border-color: var(--border-hover); }
+
+    /* ===== Lightbox ===== */
+    .erp-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: var(--z-overlay);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(6px);
+      cursor: zoom-out;
+    }
+    .erp-lightbox.is-open { display: flex; }
+    .erp-lightbox img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+    }
+    .erp-lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      background: rgba(24,24,27,0.9);
+      color: var(--text-primary);
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .erp-footer {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .erp-tour { grid-template-columns: 1fr; }
+      .erp-tabs {
+        position: static;
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 0.4rem;
+        scrollbar-width: thin;
+      }
+      .erp-tab { width: auto; flex-shrink: 0; white-space: nowrap; }
+      .erp-run { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .erp-topbar-title { display: none; }
+      .erp-hero { padding: 3.5rem 0 2rem; }
+      .erp-flow-arrow { transform: rotate(90deg); }
+      .erp-flow { flex-direction: column; }
+      .erp-url { display: none; }
+      .erp-lightbox { padding: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="erp-topbar">
+    <div class="container">
+      <a href="index.html#projects" class="erp-back"><i class="fas fa-arrow-left"></i> Voltar ao portfólio</a>
+      <span class="erp-topbar-title">ERP <span class="gradient-text">Corporativo</span></span>
+      <a href="https://github.com/Patrick-Hoff/demo_erp" target="_blank" rel="noopener" class="erp-back" aria-label="Repositório no GitHub"><i class="fab fa-github"></i> <span>GitHub</span></a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section class="erp-hero">
+      <div class="container">
+        <div class="erp-hero-inner">
+          <span class="section-tag">Case de desenvolvimento</span>
+          <h1>ERP para a <span class="gradient-text">indústria de embalagens</span></h1>
+          <p class="lead">
+            Sistema web de gestão que desenvolvi para uma fábrica de embalagens de papelão. Centraliza a
+            operação em um fluxo único e rastreável: do orçamento técnico à venda, produção, compras e estoque.
+          </p>
+          <div class="erp-hero-actions">
+            <a href="#tour" class="btn btn-primary"><i class="fas fa-play"></i> Explorar a demo</a>
+            <a href="https://github.com/Patrick-Hoff/demo_erp" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-github"></i> Ver repositório</a>
+          </div>
+          <div class="erp-stack">
+            <span class="project-tag">React 18</span>
+            <span class="project-tag">TypeScript</span>
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">Express</span>
+            <span class="project-tag">MySQL 8</span>
+            <span class="project-tag">Tailwind CSS</span>
+            <span class="project-tag">Docker</span>
+            <span class="project-tag">Nginx</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="erp-notice" role="note">
+        <i class="fas fa-shield-alt"></i>
+        <p>
+          <strong>Confidencialidade.</strong> O ERP foi desenvolvido em ambiente empresarial e seu código-fonte não é público.
+          As telas abaixo são da <strong>aplicação demonstrativa independente</strong>, escrita do zero e com
+          <strong>dados 100% fictícios</strong>, para ilustrar o sistema.
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== TOUR ===== -->
+    <section class="erp-section" id="tour">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Demo interativa</span>
+          <h2 class="section-title">Tour pelos <span class="gradient-text">módulos</span></h2>
+          <p class="section-subtitle">Selecione um módulo para ver a tela em funcionamento</p>
+        </div>
+
+        <div class="erp-tour">
+          <div class="erp-tabs" role="tablist" aria-label="Módulos do ERP" id="erpTabs"></div>
+
+          <div class="erp-browser" role="tabpanel" id="erpPanel">
+            <div class="erp-browser-bar">
+              <span class="card-dot card-dot--red"></span>
+              <span class="card-dot card-dot--yellow"></span>
+              <span class="card-dot card-dot--green"></span>
+              <span class="erp-url" id="erpUrl">localhost:8080/dashboard</span>
+            </div>
+            <div class="erp-shot" id="erpShot" title="Clique para ampliar">
+              <img id="erpImg" src="img/erp/dashboard.webp" alt="Dashboard do ERP" />
+              <div class="erp-shot-switch" id="erpSwitch"></div>
+              <span class="erp-zoom-hint"><i class="fas fa-expand"></i></span>
+            </div>
+            <div class="erp-caption">
+              <h3 id="erpTitle">Dashboard</h3>
+              <p id="erpDesc"></p>
+              <ul id="erpPoints"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FLUXO ===== -->
+    <section class="erp-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Visão geral</span>
+          <h2 class="section-title">Um fluxo <span class="gradient-text">único</span></h2>
+          <p class="section-subtitle">Antes, cada etapa tinha o seu próprio controle. No ERP, tudo se conecta.</p>
+        </div>
+        <div class="erp-flow">
+          <div class="erp-flow-step"><i class="fas fa-file-invoice-dollar"></i> Orçamento</div>
+          <i class="fas fa-chevron-right erp-flow-arrow"></i>
+          <div class="erp-flow-step"><i class="fas fa-shopping-cart"></i> Venda</div>
+          <i class="fas fa-chevron-right erp-flow-arrow"></i>
+          <div class="erp-flow-step"><i class="fas fa-industry"></i> Produção</div>
+          <i class="fas fa-chevron-right erp-flow-arrow"></i>
+          <div class="erp-flow-step"><i class="fas fa-boxes"></i> Baixa de estoque</div>
+          <i class="fas fa-chevron-right erp-flow-arrow"></i>
+          <div class="erp-flow-step"><i class="fas fa-truck"></i> Compras de reposição</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ARQUITETURA E STACK ===== -->
+    <section class="erp-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Engenharia</span>
+          <h2 class="section-title">Arquitetura e <span class="gradient-text">stack</span></h2>
+        </div>
+        <div class="erp-grid">
+          <div class="erp-card">
+            <h3><i class="fab fa-react"></i> Frontend</h3>
+            <p>React 18, TypeScript, Vite, Tailwind CSS, TanStack Query, React Hook Form, Recharts, React-PDF e dnd-kit.</p>
+            <span class="label">Camadas</span>
+            <p>pages → hooks → services → cliente HTTP, com design system interno.</p>
+          </div>
+          <div class="erp-card">
+            <h3><i class="fab fa-node-js"></i> Backend</h3>
+            <p>Node.js, Express 5 e TypeScript. API REST documentada com Swagger/OpenAPI.</p>
+            <span class="label">Camadas</span>
+            <p>routes → controllers → services → database, com transações e tratamento central de erros.</p>
+          </div>
+          <div class="erp-card">
+            <h3><i class="fas fa-database"></i> Dados</h3>
+            <p>MySQL 8 com migrations SQL versionadas e usuário de aplicação com privilégios mínimos.</p>
+            <span class="label">Arquivos</span>
+            <p>Fotos, layouts e anexos em bucket privado no Cloudflare R2, servidos só pelo backend autenticado.</p>
+          </div>
+          <div class="erp-card">
+            <h3><i class="fab fa-docker"></i> Infraestrutura</h3>
+            <p>Docker com build multi-stage, Docker Compose, Nginx como proxy reverso e deploy no Railway.</p>
+            <span class="label">Segurança</span>
+            <p>JWT em cookie HttpOnly, bcrypt, Helmet, rate limit no login e validação de entrada.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DESAFIOS ===== -->
+    <section class="erp-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Problemas reais</span>
+          <h2 class="section-title">Desafios <span class="gradient-text">técnicos</span></h2>
+        </div>
+        <div class="erp-grid">
+          <div class="erp-card">
+            <h3><i class="fas fa-boxes"></i> Baixa de estoque</h3>
+            <p>Produtos com e sem composição. A dedução pelos insumos acontece na própria transação da venda, com registro de movimentação.</p>
+          </div>
+          <div class="erp-card">
+            <h3><i class="fas fa-hashtag"></i> Numeração diária</h3>
+            <p>Orçamentos numerados por dia sem duplicidade: contador travado na transação de criação e índice único.</p>
+          </div>
+          <div class="erp-card">
+            <h3><i class="fas fa-truck"></i> Frete na venda</h3>
+            <p>O frete virava desconto ao editar a venda. Agora o total acompanha a diferença do frete, com validações.</p>
+          </div>
+          <div class="erp-card">
+            <h3><i class="fas fa-id-card"></i> CPF/CNPJ vazio</h3>
+            <p>Conflito de unicidade resolvido gravando string vazia como <code>NULL</code>, com migration idempotente de correção.</p>
+          </div>
+          <div class="erp-card">
+            <h3><i class="fas fa-user-shield"></i> Sessão segura</h3>
+            <p>Token exposto a XSS: JWT movido do <code>localStorage</code> para cookie HttpOnly, com rate limit e algoritmo fixo.</p>
+          </div>
+          <div class="erp-card">
+            <h3><i class="fas fa-file-upload"></i> Upload de PDFs</h3>
+            <p>PDFs grandes eram recusados pelo proxy. O limite do Nginx foi ajustado acima do limite da aplicação.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXECUTAR ===== -->
+    <section class="erp-section">
+      <div class="container">
+        <div class="erp-run">
+          <div>
+            <span class="section-tag">Rode localmente</span>
+            <h2 class="section-title" style="text-align:left">Suba a demo com <span class="gradient-text">Docker</span></h2>
+            <ol>
+              <li>O MySQL cria as tabelas automaticamente.</li>
+              <li>A API gera seis meses de dados fictícios coerentes entre si (orçamentos → vendas → estoque → compras).</li>
+              <li>O Nginx serve o React e repassa <code>/api</code> para a API. Acesse <strong>localhost:8080</strong>.</li>
+            </ol>
+          </div>
+          <div class="erp-terminal">
+            <div class="erp-browser-bar">
+              <span class="card-dot card-dot--red"></span>
+              <span class="card-dot card-dot--yellow"></span>
+              <span class="card-dot card-dot--green"></span>
+              <button type="button" class="erp-copy" id="erpCopy"><i class="far fa-copy"></i> Copiar</button>
+            </div>
+<pre><span class="p">$</span> git clone https://github.com/Patrick-Hoff/demo_erp.git
+<span class="p">$</span> cd demo_erp
+<span class="p">$</span> docker compose up -d --build
+<span class="c"># abra http://localhost:8080</span></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="erp-footer">
+    <div class="container">
+      Todos os nomes de empresas, pessoas, produtos e valores exibidos são fictícios.<br />
+      <a href="index.html" class="erp-back" style="margin-top:0.75rem"><i class="fas fa-arrow-left"></i> Patrick Hoffmann Campos</a>
+    </div>
+  </footer>
+
+  <div class="erp-lightbox" id="erpLightbox" role="dialog" aria-modal="true" aria-label="Captura ampliada">
+    <button type="button" class="erp-lightbox-close" aria-label="Fechar"><i class="fas fa-times"></i></button>
+    <img id="erpLightboxImg" src="" alt="" />
+  </div>
+
+  <script>
+    (function () {
+      const modules = [
+        {
+          id: 'dashboard', icon: 'fa-chart-line', name: 'Dashboard',
+          desc: 'Visão gerencial com KPIs comparados ao período anterior, faturamento mensal, recebimentos por forma de pagamento, próximas entregas e alertas de estoque.',
+          points: ['KPIs com variação em relação ao período anterior', 'Gráficos de faturamento e recebimentos', 'Alertas de reposição de estoque mínimo'],
+          shots: [{ label: 'Desktop', src: 'dashboard' }, { label: 'Celular', src: 'mobile-dashboard', contain: true }]
+        },
+        {
+          id: 'orcamentos', icon: 'fa-file-invoice-dollar', name: 'Orçamentos',
+          desc: 'Precificação técnica de caixas sob medida: o sistema calcula materiais, insumos e custos fixos e forma o preço por margem ou pela capacidade produtiva por hora.',
+          points: ['Numeração diária automática (DDMMAA + sequência)', 'Orçamento por caixa ou por produtos', 'Geração de PDF padronizado'],
+          shots: [{ label: 'Lista', src: 'orcamentos' }]
+        },
+        {
+          id: 'vendas', icon: 'fa-shopping-cart', name: 'Vendas',
+          desc: 'Vendas com itens, frete incluído no total e pagamentos parciais em R$ ou %. Gera o Pedido Comercial A4 com dados de pagamento e QR Code Pix.',
+          points: ['Pagamentos parciais e controle de recebimentos', 'Frete integrado ao total da venda', 'Baixa automática de estoque pela composição'],
+          shots: [{ label: 'Lista', src: 'vendas' }, { label: 'Detalhe', src: 'vendas-detalhe' }]
+        },
+        {
+          id: 'producao', icon: 'fa-industry', name: 'Produção',
+          desc: 'Cada venda confirmada vira um projeto de produção, acompanhado por etapa até a expedição em um calendário com arrastar e soltar.',
+          points: ['Calendário de produção com drag and drop', 'Acompanhamento por etapa', 'Ligação direta com a venda de origem'],
+          shots: [{ label: 'Projetos', src: 'producao' }]
+        },
+        {
+          id: 'compras', icon: 'fa-truck', name: 'Compras',
+          desc: 'Entradas de mercadoria com o frete rateado no custo unitário de cada item, mantendo o custo do estoque fiel à realidade.',
+          points: ['Rateio de frete no custo unitário', 'Anexos PDF validados', 'Entrada automática no estoque'],
+          shots: [{ label: 'Lista', src: 'compras' }, { label: 'Rateio de frete', src: 'compras-rateio-frete' }]
+        },
+        {
+          id: 'produtos', icon: 'fa-cube', name: 'Produtos',
+          desc: 'Cadastro de produtos com composição de insumos (BOM), base para o cálculo de custo e para a baixa de estoque nas vendas.',
+          points: ['Composição de insumos (BOM)', 'Modelos reutilizáveis', 'Custo calculado a partir dos insumos'],
+          shots: [{ label: 'Lista', src: 'produtos' }, { label: 'Composição', src: 'produtos-composicao' }]
+        },
+        {
+          id: 'estoque', icon: 'fa-boxes', name: 'Estoque',
+          desc: 'Saldo de cada item com histórico de movimentações. As vendas dão baixa e as compras dão entrada automaticamente.',
+          points: ['Movimentações rastreáveis', 'Estoque mínimo por item', 'Alertas de reposição'],
+          shots: [{ label: 'Saldo', src: 'estoque' }]
+        },
+        {
+          id: 'clientes', icon: 'fa-users', name: 'Clientes',
+          desc: 'Cadastro de clientes pessoa física e jurídica, usado em orçamentos, vendas e no Pedido Comercial.',
+          points: ['CPF/CNPJ com unicidade garantida', 'Histórico comercial do cliente', 'Interface responsiva'],
+          shots: [{ label: 'Lista', src: 'clientes' }]
+        }
+      ];
+
+      const $ = (id) => document.getElementById(id);
+      const tabs = $('erpTabs'), img = $('erpImg'), sw = $('erpSwitch');
+      let current = 0;
+
+      function setShot(shot, name) {
+        img.classList.add('is-loading');
+        const next = new Image();
+        next.onload = () => {
+          img.src = next.src;
+          img.alt = name + ' — ' + shot.label;
+          img.style.objectFit = shot.contain ? 'contain' : 'cover';
+          img.classList.remove('is-loading');
+        };
+        next.src = 'img/erp/' + shot.src + '.webp';
+      }
+
+      function select(i, focus) {
+        current = i;
+        const m = modules[i];
+        tabs.querySelectorAll('.erp-tab').forEach((t, j) => {
+          t.setAttribute('aria-selected', j === i);
+          t.tabIndex = j === i ? 0 : -1;
+        });
+        if (focus) tabs.children[i].focus();
+        $('erpUrl').textContent = 'localhost:8080/' + m.id;
+        $('erpTitle').textContent = m.name;
+        $('erpDesc').textContent = m.desc;
+        $('erpPoints').innerHTML = m.points.map(p => '<li><i class="fas fa-check"></i><span>' + p + '</span></li>').join('');
+        sw.innerHTML = '';
+        if (m.shots.length > 1) {
+          m.shots.forEach((s, k) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.textContent = s.label;
+            b.setAttribute('aria-pressed', k === 0);
+            b.addEventListener('click', (e) => {
+              e.stopPropagation();
+              sw.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+              setShot(s, m.name);
+            });
+            sw.appendChild(b);
+          });
+        }
+        setShot(m.shots[0], m.name);
+      }
+
+      modules.forEach((m, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'erp-tab';
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-controls', 'erpPanel');
+        b.innerHTML = '<i class="fas ' + m.icon + '"></i><span>' + m.name + '</span>';
+        b.addEventListener('click', () => select(i));
+        tabs.appendChild(b);
+      });
+
+      tabs.addEventListener('keydown', (e) => {
+        const n = modules.length;
+        if (['ArrowDown', 'ArrowRight'].includes(e.key)) { e.preventDefault(); select((current + 1) % n, true); }
+        if (['ArrowUp', 'ArrowLeft'].includes(e.key)) { e.preventDefault(); select((current - 1 + n) % n, true); }
+      });
+
+      select(0);
+
+      // Lightbox
+      const lb = $('erpLightbox'), lbImg = $('erpLightboxImg');
+      $('erpShot').addEventListener('click', () => {
+        lbImg.src = img.src; lbImg.alt = img.alt;
+        lb.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+      const close = () => { lb.classList.remove('is-open'); document.body.style.overflow = ''; };
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+      // Copiar comandos
+      const copyBtn = $('erpCopy');
+      copyBtn.addEventListener('click', async () => {
+        const cmd = 'git clone https://github.com/Patrick-Hoff/demo_erp.git\ncd demo_erp\ndocker compose up -d --build';
+        try {
+          await navigator.clipboard.writeText(cmd);
+          copyBtn.innerHTML = '<i class="fas fa-check"></i> Copiado';
+        } catch (_) {
+          copyBtn.textContent = 'Falha ao copiar';
+        }
+        setTimeout(() => { copyBtn.innerHTML = '<i class="far fa-copy"></i> Copiar'; }, 1800);
+      });
+    })();
+  </script>
+</body>
+</html>

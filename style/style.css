@@ -823,6 +823,8 @@ pre, code { font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Courie
 
 .skill-item i { font-size: 1.05rem; }
 
+.skill-item .icon-claude { color: #D97757; font-size: 0.95rem; }
+
 /* Express icon is plain — ensure contrast */
 .devicon-express-original { color: var(--text-primary) !important; }
 

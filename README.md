@@ -19,7 +19,7 @@
 - **Hero** — apresentação com efeito typewriter, code card e contadores animados
 - **Sobre** — resumo profissional e cards de informações
 - **Skills** — tecnologias organizadas por categoria (Front-end, Back-end, Banco de Dados, Ferramentas)
-- **Projetos** — 7 projetos com links para GitHub e demo
+- **Projetos** — 7 projetos com links para GitHub e demo, incluindo o case do ERP Corporativo (`erp-demo.html`)
 - **Experiência** — timeline profissional e acadêmica
 - **Contato** — links diretos e formulário de contato
 
